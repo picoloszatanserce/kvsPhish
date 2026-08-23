@@ -36,7 +36,14 @@ SERVER_PID=$!
 cloudflared tunnel --url http://localhost:8000 > tunnel.log 2>&1 &
 TUNNEL_PID=$!
 
-echo "Tunel uruchomiony. Link w tunnel.log"
+sleep 2
+
+# 🔥 AUTOMATYCZNE WYŚWIETLENIE LINKU TUNELU
+echo "[KALI] Link tunelu:"
+grep -o "https://.*" tunnel.log
+
+echo ""
+echo "[KALI] Tunel uruchomiony. Link powyżej ↑"
 
 # 🔥 CZAS DZIAŁANIA
 sleep 3600
