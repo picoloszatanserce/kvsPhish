@@ -36,12 +36,38 @@ SERVER_PID=$!
 cloudflared tunnel --url http://localhost:8000 > tunnel.log 2>&1 &
 TUNNEL_PID=$!
 
-sleep 2
-sleep 3
+# URUCHOMIENIE TUNELU
+echo "[KALI] Uruchamiam tunel..."
 
-# 🔥 AUTOMATYCZNE WYŚWIETLENIE LINKU TUNELU
-echo "[KALI] Link tunelu:"
-grep -o "https://.*" tunnel.log
+cloudflared tunnel --url http://localhost:8000 > tunnel.log 2>&1 &
+TUNNEL_PID=$!
+
+# Czekamy maksymalnie 15 sekund na pojawienie się adresu
+TUNNEL_URL=""
+
+for i in {1..15}; do
+    TUNNEL_URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.trycloudflare\.com' tunnel.log | head -n 1)
+
+    if [ -n "$TUNNEL_URL" ]; then
+        break
+    fi
+
+    sleep 1
+done
+
+echo ""
+
+if [ -n "$TUNNEL_URL" ]; then
+    echo "[KALI] Link tunelu:"
+    echo "$TUNNEL_URL"
+else
+    echo "[KALI] Nie udało się znaleźć linku tunelu."
+    echo ""
+    echo "[KALI] Log cloudflared:"
+    cat tunnel.log
+    echo ""
+    echo "[KALI] Sprawdź, czy cloudflared działa poprawnie."
+fi
 
 echo ""
 echo "[KALI] Tunel uruchomiony. Link powyżej ↑"
