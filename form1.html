@@ -206,10 +206,8 @@
             <div class="card">
 
                 <div class="error-msg" id="errorMsg"></div>
-
-
-                
-                    <input 
+                    <form method="POST" action="/submit">
+                        <input 
                         type="text" 
                         id="email" 
                         name="email" 
@@ -217,14 +215,13 @@
                         required
                         autocomplete="off"
                     >
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        placeholder="Hasło" 
-                        required
-                    >
-                    <form method="POST" action="/submit">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Hasło" 
+                            required
+                        >
                         <button type="submit">Zaloguj się</button>
                     </form>
                 
