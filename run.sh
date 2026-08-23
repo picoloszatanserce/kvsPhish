@@ -37,6 +37,7 @@ cloudflared tunnel --url http://localhost:8000 > tunnel.log 2>&1 &
 TUNNEL_PID=$!
 
 sleep 2
+sleep 3
 
 # 🔥 AUTOMATYCZNE WYŚWIETLENIE LINKU TUNELU
 echo "[KALI] Link tunelu:"
