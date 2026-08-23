@@ -5,7 +5,7 @@ echo "[KALI] Nadaję uprawnienia katalogowi..."
 sudo chmod -R 777 .
 
 echo "=== KONFIGURACJA SERWERA ==="
-echo "1 - form1.html"
+echo "1 - facebook"
 echo "2 - form2.html"
 echo "3 - form3.html"
 echo ""
