@@ -4,6 +4,3 @@ kvsPhish to otwartoźródłowe narzędzie do symulacji ataków phishingowych, st
 
 # Wersja programu
 program obecnie jest jeszcze w czasie testów. Instrukcje co do uzywania programu znajdziesz po zakończeniu pracy nad wersją **1.0**.
-
-# Wsparcie
-Jeśli chcesz docenić moją pracę, będę bardzo zadowolony z karty **media expert**. Wyślij ją prosto z media expert na adres email: kvsPhish.dev@proton.me
